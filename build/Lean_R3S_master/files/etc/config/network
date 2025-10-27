@@ -33,6 +33,7 @@ config interface 'lan'
 	option netmask '255.255.255.0'
 	option delegate '0'
 	option ifname 'eth1'
+	option type 'bridge'
 
 config device
 	option name 'eth0'
@@ -54,4 +55,14 @@ config wireguard_WireGuard
 	list allowed_ips '192.168.21.0/24'
 	list allowed_ips '192.168.11.0/24'
 	list allowed_ips '192.168.3.0/24'
-	
+
+config interface 'docker'
+	option ifname 'docker0'
+	option proto 'none'
+	option auto '0'
+
+config device 'docker0'
+	option type 'bridge'
+	option name 'docker0'
+	list ifname 'docker0'
+
