@@ -51,6 +51,7 @@ git_sparse_clone() {
 
 echo "📦 正在克隆第三方软件包"
 git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat > /dev/null 2>&1
+git clone --depth=1 https://github.com/xztxy/luci-app-autoupdate package/luci-app-autoupdate > /dev/null 2>&1
 git clone --depth=1 https://github.com/sirpdboy/luci-app-kucat-config package/luci-app-kucat-config > /dev/null 2>&1
 git clone --depth=1 https://github.com/peditx/luci-theme-peditx package/luci-theme-peditx > /dev/null 2>&1
 git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/lucky > /dev/null 2>&1
@@ -66,6 +67,7 @@ echo "✅ 第三方软件包克隆完成"
 
 echo "🔄 安装第三方软件包..."
 ./scripts/feeds install luci-theme-kucat > /dev/null 2>&1
+./scripts/feeds install luci-app-autoupdate > /dev/null 2>&1
 ./scripts/feeds install luci-app-kucat-config > /dev/null 2>&1
 ./scripts/feeds install luci-theme-peditx > /dev/null 2>&1
 ./scripts/feeds install luci-app-lucky > /dev/null 2>&1
