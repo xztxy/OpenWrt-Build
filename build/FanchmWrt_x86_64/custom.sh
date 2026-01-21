@@ -262,6 +262,7 @@ CONFIG_PACKAGE_luci-app-transmission=n
 CONFIG_PACKAGE_luci-app-qbittorrent=n
 CONFIG_PACKAGE_luci-app-amule=n
 CONFIG_PACKAGE_luci-app-xlnetacc=n
+CONFIG_PACKAGE_luci-app-xwan=y
 CONFIG_PACKAGE_luci-app-zerotier=n
 CONFIG_PACKAGE_luci-app-hd-idle=n
 CONFIG_PACKAGE_luci-app-unblockmusic=n
