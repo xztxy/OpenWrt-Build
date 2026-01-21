@@ -246,6 +246,8 @@ EOF
 
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-wol=n
+CONFIG_PACKAGE_luci-app-autoupdate=y
+CONFIG_PACKAGE_autoupdate=y
 CONFIG_PACKAGE_luci-app-gowebdav=n
 CONFIG_PACKAGE_luci-app-accesscontrol=n
 CONFIG_PACKAGE_luci-app-wrtbwmon=n
