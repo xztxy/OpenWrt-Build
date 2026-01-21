@@ -75,6 +75,7 @@ echo "🔄 安装第三方软件包..."
 ./scripts/feeds install luci-app-poweroffdevice > /dev/null 2>&1
 ./scripts/feeds install luci-app-xwan > /dev/null 2>&1
 ./scripts/feeds install luci-app-syncdial > /dev/null 2>&1
+./scripts/feeds install nikki > /dev/null 2>&1
 ./scripts/feeds install luci-app-nikki > /dev/null 2>&1
 echo "✅ 第三方软件包安装完成"
 
