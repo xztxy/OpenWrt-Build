@@ -10,6 +10,45 @@ echo "📥 再次安装所有 feeds（确保完整）..."
 ./scripts/feeds install -a -f > /dev/null
 echo "✅ feeds 更新与安装完成"
 
+git_sparse_clone() {
+    local repo_url=$1
+    local branch=$2
+    shift 2
+    local plugins=("$@")
+
+    echo "📦 开始克隆仓库: $repo_url"
+
+    temp_dir=$(mktemp -d)
+
+    git clone --depth=1 --filter=blob:none --sparse "$repo_url" -b "$branch" "$temp_dir" 2>/dev/null
+
+    if [ $? -ne 0 ]; then
+        echo "❌ 克隆失败: $repo_url"
+        rm -rf "$temp_dir"
+        return 1
+    fi
+
+    cd "$temp_dir"
+
+    git sparse-checkout set "${plugins[@]}"
+
+    cd - > /dev/null
+
+    for plugin in "${plugins[@]}"; do
+        if [ -d "$temp_dir/$plugin" ]; then
+            plugin_name=$(basename "$plugin")
+            target="package/$plugin_name"
+
+            [ -d "$target" ] && rm -rf "$target"
+
+            mv "$temp_dir/$plugin" "$target"
+            echo "✓ 已克隆: $plugin_name"
+        fi
+    done
+
+    rm -rf "$temp_dir"
+}
+
 echo "📦 正在克隆第三方软件包"
 git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat > /dev/null 2>&1
 git clone --depth=1 https://github.com/sirpdboy/luci-app-kucat-config package/luci-app-kucat-config > /dev/null 2>&1
@@ -20,15 +59,8 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luc
 git clone --depth=1 https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager > /dev/null 2>&1
 git clone --depth=1 https://github.com/sirpdboy/luci-app-poweroffdevice package/luci-app-poweroffdevice > /dev/null 2>&1
 
-git clone --depth=1 -b master https://github.com/x-wrt/com.x-wrt xwan-temp > /dev/null 2>&1
-cp -r xwan-temp/luci-app-xwan package/ 2>/dev/null
-rm -rf xwan-temp
-
-git clone --depth=1 -b main https://github.com/xztxy/small-package small-package-temp > /dev/null 2>&1
-cp -r small-package-temp/luci-app-syncdial package/ 2>/dev/null
-cp -r small-package-temp/nikki package/ 2>/dev/null
-cp -r small-package-temp/luci-app-nikki package/ 2>/dev/null
-rm -rf small-package-temp
+git_sparse_clone "https://github.com/x-wrt/com.x-wrt" "master" "luci-app-xwan"
+git_sparse_clone "https://github.com/xztxy/small-package" "main" "luci-app-syncdial" "nikki" "luci-app-nikki"
 echo "✅ 第三方软件包克隆完成"
 
 
