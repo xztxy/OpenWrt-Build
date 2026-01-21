@@ -10,32 +10,18 @@ echo "📥 再次安装所有 feeds（确保完整）..."
 ./scripts/feeds install -a -f > /dev/null
 echo "✅ feeds 更新与安装完成"
 
-git_sparse_clone() {
-    local branch="$1"
-    local repo="$2"
-    local target="$3"
-    local sparse_paths=("${@:4}")
-    git clone --depth=1 --filter=blob:none --sparse --branch "$branch" "$repo" "$target"
-    cd "$target"
-    git sparse-checkout init
-    for path in "${sparse_paths[@]}"; do
-        git sparse-checkout set "$path"
-    done
-    cd -
-}
-
 echo "📦 正在克隆第三方软件包"
-git clone --depth=1 -b master https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat > /dev/null 2>&1
-git clone --depth=1 -b master https://github.com/sirpdboy/luci-app-kucat-config package/luci-app-kucat-config > /dev/null 2>&1
-git clone --depth=1 -b main https://github.com/peditx/luci-theme-peditx package/luci-theme-peditx > /dev/null 2>&1
-git clone --depth=1 -b main https://github.com/gdy666/luci-app-lucky package/lucky > /dev/null 2>&1
-git clone --depth=1 -b master https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus > /dev/null 2>&1
+git clone --depth=1 https://github.com/sirpdboy/luci-theme-kucat package/luci-theme-kucat > /dev/null 2>&1
+git clone --depth=1 https://github.com/sirpdboy/luci-app-kucat-config package/luci-app-kucat-config > /dev/null 2>&1
+git clone --depth=1 https://github.com/peditx/luci-theme-peditx package/luci-theme-peditx > /dev/null 2>&1
+git clone --depth=1 https://github.com/gdy666/luci-app-lucky package/lucky > /dev/null 2>&1
+git clone --depth=1 https://github.com/sirpdboy/luci-app-advancedplus package/luci-app-advancedplus > /dev/null 2>&1
 git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset > /dev/null 2>&1
 git clone --depth=1 https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager > /dev/null 2>&1
 git clone --depth=1 https://github.com/sirpdboy/luci-app-poweroffdevice package/luci-app-poweroffdevice > /dev/null 2>&1
-git_sparse_clone master https://github.com/x-wrt/com.x-wrt luci-app-xwan luci-app-xwan
-git_sparse_clone main https://github.com/xztxy/small-package luci-app-syncdial luci-app-syncdial
-git_sparse_clone main https://github.com/xztxy/small-package luci-app-nikki nikki
+git clone --depth=1 -b master https://github.com/x-wrt/com.x-wrt package/luci-app-xwan > /dev/null 2>&1
+git clone --depth=1 -b main https://github.com/xztxy/small-package package/luci-app-syncdial > /dev/null 2>&1
+git clone --depth=1 -b main https://github.com/xztxy/small-package package/luci-app-nikki > /dev/null 2>&1
 echo "✅ 第三方软件包克隆完成"
 
 echo "🔄 安装第三方软件包..."
