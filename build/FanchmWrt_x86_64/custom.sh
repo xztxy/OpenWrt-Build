@@ -20,8 +20,11 @@ git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luc
 git clone --depth=1 https://github.com/sbwml/luci-app-filemanager package/luci-app-filemanager > /dev/null 2>&1
 git clone --depth=1 https://github.com/sirpdboy/luci-app-poweroffdevice package/luci-app-poweroffdevice > /dev/null 2>&1
 git clone --depth=1 -b master https://github.com/x-wrt/com.x-wrt package/luci-app-xwan > /dev/null 2>&1
-git clone --depth=1 -b main https://github.com/xztxy/small-package package/luci-app-syncdial > /dev/null 2>&1
-git clone --depth=1 -b main https://github.com/xztxy/small-package package/luci-app-nikki > /dev/null 2>&1
+
+git clone --depth=1 -b main https://github.com/xztxy/small-package small-package-temp > /dev/null 2>&1
+cp -r small-package-temp/luci-app-syncdial package/ 2>/dev/null
+cp -r small-package-temp/nikki package/ 2>/dev/null
+rm -rf small-package-temp
 echo "✅ 第三方软件包克隆完成"
 
 echo "🔄 安装第三方软件包..."
