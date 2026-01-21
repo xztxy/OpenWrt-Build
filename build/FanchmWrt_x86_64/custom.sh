@@ -298,6 +298,7 @@ EOF
 
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
+CONFIG_PACKAGE_luci-theme-argon-config=y
 CONFIG_PACKAGE_luci-theme-design=y
 CONFIG_PACKAGE_luci-theme-kucat=y
 CONFIG_PACKAGE_luci-theme-peditx=y
