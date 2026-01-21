@@ -60,7 +60,7 @@ git clone --depth=1 https://github.com/sbwml/luci-app-filemanager package/luci-a
 git clone --depth=1 https://github.com/sirpdboy/luci-app-poweroffdevice package/luci-app-poweroffdevice > /dev/null 2>&1
 
 git_sparse_clone "https://github.com/x-wrt/com.x-wrt" "master" "luci-app-xwan"
-git_sparse_clone "https://github.com/xztxy/small-package" "main" "luci-app-syncdial" "nikki" "luci-app-nikki"
+git_sparse_clone "https://github.com/xztxy/small-package" "main" "luci-app-syncdial" "nikki" "luci-app-nikki" "luci-theme-argon" "luci-theme-argon-config"
 echo "✅ 第三方软件包克隆完成"
 
 
